@@ -13,3 +13,17 @@
     -ms-transform: translateY(100%);
     transform: translateY(100%);
 }
+
+.view_bodytext{
+    text-align: center;
+    height:45vh;
+    color:#412f38;
+    position: relative;
+    padding:20px;
+}
+
+.view_bodytext p{
+    font-weight: bold;
+    font-size:2vh;
+    margin:auto;
+}
