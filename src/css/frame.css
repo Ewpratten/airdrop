@@ -9,7 +9,7 @@ body {
     margin:0;
     background-color: #dedce1;
     border-radius: 5px;
-    width: calc(100vh * (1080 / 1920));
+    width: calc(100vh * (1080 / 2160));
     height:100vh;
     margin:auto;
 }
