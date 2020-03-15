@@ -1,0 +1,15 @@
+.view_header{
+    text-align: center;
+    height:30vh;
+    color:#416b75;
+    position: relative;
+}
+
+.view_header h1{
+    font-weight: bold;
+    font-size:10vh;
+    margin:auto;
+    top: 50%;
+    -ms-transform: translateY(100%);
+    transform: translateY(100%);
+}
