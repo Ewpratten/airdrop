@@ -1,0 +1,15 @@
+{
+    "background_color": "white",
+    "description": "An app for exploration",
+    "display": "fullscreen",
+    "icons": [
+      {
+        "src": "assets/img/drop.png",
+        "sizes": "192x192",
+        "type": "image/png"
+      }
+    ],
+    "name": "AirDrop",
+    "short_name": "AirDrop",
+    "start_url": "/AirDrop"
+  }
