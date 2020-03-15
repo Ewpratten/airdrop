@@ -11,6 +11,9 @@ namespace router {
 
     export function request() {
         log("Router", "Opening request route");
-        setAppFrame(new RequestView().render());
+
+        let rv: RequestView = new RequestView();
+        setAppFrame(new RequestView().preRender());
+        rv.poke();
     }
 }

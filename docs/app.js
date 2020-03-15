@@ -27,7 +27,9 @@ var router;
     router.home = home;
     function request() {
         log("Router", "Opening request route");
-        setAppFrame(new RequestView().render());
+        var rv = new RequestView();
+        setAppFrame(new RequestView().preRender());
+        rv.poke();
     }
     router.request = request;
 })(router || (router = {}));
@@ -55,11 +57,44 @@ var RequestView = (function (_super) {
         var _this = _super.call(this) || this;
         _this.long = -81.2408681;
         _this.lat = 43.0037301;
+        if (navigator.geolocation) {
+            log("RequestView", "Has access to navigator");
+            navigator.geolocation.getCurrentPosition(_this.handlePosition, _this.fail);
+            _this.hasNav = true;
+        }
+        else {
+            _this.hasNav = false;
+        }
         return _this;
     }
+    RequestView.prototype.poke = function () {
+        if (!this.hasNav) {
+            router.setAppFrame(this.render());
+        }
+    };
+    RequestView.prototype.handlePosition = function (pose) {
+        log("RequestView", "Got pose: " + pose);
+        this.lat = pose.coords.latitude;
+        this.long = pose.coords.longitude;
+        router.setAppFrame(this.render());
+    };
+    RequestView.prototype.fail = function () {
+        this.hasNav = false;
+        log("RequestView", "Request failed");
+        router.setAppFrame(this.render());
+    };
+    RequestView.prototype.preRender = function () {
+        var header = "<div class='view_header'> <h1>AirDrop</h1></div>";
+        var content = "<div class='view_bodytext'><p>We are searching for a package. Please wait.</p></div>";
+        var bottom = "<div class='bottom_bar'><button onclick='router.home();'>Return Home</button></div>";
+        return header + content + bottom;
+    };
     RequestView.prototype.render = function () {
         var header = "<div class='view_header'> <h1>AirDrop</h1></div>";
         var locationButton = "<a href='https://www.google.com/maps/dir//" + this.lat + "," + this.long + "'>(" + Math.round(this.lat * 1000) / 1000 + ", " + Math.round(this.long * 1000) / 1000 + ")</a>";
+        if (!this.hasNav) {
+            locationButton = "-- Browser does not support navigation --";
+        }
         var content = "<div class='view_bodytext'><p>We have found a package for you at: <br>" + locationButton + "</p></div>";
         var bottom = "<div class='bottom_bar'><button onclick='router.home();'>Return Home</button></div>";
         return header + content + bottom;
