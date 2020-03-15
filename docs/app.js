@@ -36,7 +36,7 @@ var WelcomeView = (function (_super) {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     WelcomeView.prototype.render = function () {
-        return "<div class='view_header'> <h1>Welcome</h1></div><div class='view_bodytext'><p>AirDrop is an app for exploration. We will place a package somewhere near you, and all you have to do is go collect it. Have fun!</p></div><div class='bottom_bar_button'><button>Continue</button></div>";
+        return "<div class='view_header'> <h1>Welcome</h1></div><div class='view_bodytext'><p>AirDrop is an app for exploration. We will place a package somewhere near you, and all you have to do is go collect it. Have fun!</p></div><div class='bottom_bar'><button>Continue</button></div>";
     };
     return WelcomeView;
 }(PageView));
