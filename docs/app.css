@@ -29,7 +29,6 @@ p{
     font-weight: bold;
     font-size:10vh;
     margin:auto;
-    /* position: absolute; */
     top: 50%;
     -ms-transform: translateY(100%);
     transform: translateY(100%);
